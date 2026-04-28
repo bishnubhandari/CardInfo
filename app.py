@@ -258,21 +258,23 @@ st.markdown(f"""
 """, unsafe_allow_html=True)
 
 st.markdown('<div class="section-header">Section 10: Strategic Recommendations</div>', unsafe_allow_html=True)
+q1_count = len(df[df['Quartile'] == 'Q1 (Bottom 25%)'])
+q4_avg = int(df[df['Quartile'] == 'Q4 (Top 25%)']['TotalCount'].mean())
 col_r1, col_r2 = st.columns(2)
 with col_r1:
-    st.markdown("""
+    st.markdown(f"""
     <div class="recommendation-card">
         <h4>🎯 Expand Kathmandu Presence</h4>
         <p>With {Kathmandu_pct}% share, Kathmandu remains the growth engine. Increase ATM density and card issuance campaigns.</p>
     </div>
     <div class="recommendation-card">
         <h4>📊 Investigate Underperformers</h4>
-        <p>Bottom {len(df[df['Quartile'] == 'Q1 (Bottom 25%)'])} regions in Q1 need operational review. Assess staffing, ATM placement, and marketing.</p>
+        <p>Bottom {q1_count} regions in Q1 need operational review. Assess staffing, ATM placement, and marketing.</p>
     </div>
-    """.format(Kathmandu_pct=Kathmandu_pct), unsafe_allow_html=True)
+    """, unsafe_allow_html=True)
 
 with col_r2:
-    st.markdown("""
+    st.markdown(f"""
     <div class="recommendation-card">
         <h4>🔄 Implement Cross-Regional Learning</h4>
         <p>Best practices from Q4 regions (avg {q4_avg:,} tx) should be shared with bottom quartile regions.</p>
@@ -281,7 +283,7 @@ with col_r2:
         <h4>📈 Set Performance Targets</h4>
         <p>Establish quarterly KPIs with graduated targets: Q1 → Q2 → Q3 → Q4 benchmarks to drive improvement.</p>
     </div>
-    """.format(q4_avg=int(df[df['Quartile'] == 'Q4 (Top 25%)']['TotalCount'].mean())), unsafe_allow_html=True)
+    """, unsafe_allow_html=True)
 
 st.markdown("<hr style='margin-top:50px;'>", unsafe_allow_html=True)
 st.markdown("*Dashboard generated on " + datetime.now().strftime("%B %d, %Y") + " | Regional Transaction Performance Analysis*")
