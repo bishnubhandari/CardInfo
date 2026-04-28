@@ -166,7 +166,7 @@ with col_q2:
 st.markdown('<div class="section-header">Section 6: Geographic Concentration Analysis</div>', unsafe_allow_html=True)
 df_sorted = df.sort_values('TotalCount', ascending=False).reset_index(drop=True)
 Kathmandu_idx = df_sorted[df_sorted['RegionName'].str.contains('Kathmandu', case=False, na=False)]
- Kathmandu_tx = Kathmandu_idx['TotalCount'].sum() if len(Kathmandu_idx) > 0 else 0
+Kathmandu_tx = Kathmandu_idx['TotalCount'].sum() if len(Kathmandu_idx) > 0 else 0
 Kathmandu_pct = (Kathmandu_tx / total_transactions * 100).round(1)
 top3_pct = (df.nlargest(3, 'TotalCount')['TotalCount'].sum() / total_transactions * 100).round(1)
 largest = df['TotalCount'].max()
